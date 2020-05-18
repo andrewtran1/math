@@ -1,0 +1,80 @@
+\documentclass[12pt]{article}
+
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+
+\newtheorem{defn}{Definition}
+\newtheorem{lem}{Lemma}
+\newtheorem{thm}{Theorem}
+
+\title{Galois Theory}
+\author{Andrew Tran}
+\date{}
+
+
+\begin{document}
+\maketitle
+
+\section{Polynomial Rings}
+\subsection{Adjuctions and their Properties}
+\begin{defn}
+  Let $\mathscr{C}$  and $\mathscr{D}$ be categories. Then an adjunction from $\mathscr{C}$ to $\mathscr{D}$ is a $4$-tuple $(\eta,\epsilon):F\vdash G$,
+  where $F:\mathscr{C}\to\mathscr{D}$ and $G:\mathscr{D}\to\mathscr{C}$ are functors and $\eta:1_{\mathscr{C}}\Rightarrow GF$ and 
+  $\epsilon:FG\Rightarrow1_{\mathscr{D}}$ are natural transformations and the following hold:
+  \begin{enumerate}
+    \item For every object $X \in Ob\mathscr{C}$, $\epsilon_{FX}\circ F\eta_{X} = 1_{FX}$ 
+    \item For every object $Y \in Ob\mathscr{D}$, $G\epsilon_{Y}\circ\eta_{GX} = 1_{GX}$
+  \end{enumerate}
+\end{defn}
+\subsection{Polynomial Ring Adjoints}
+\begin{defn}
+  Let $CRing$ be the category of commutative rings and ring homomorphisms and $CRing^{*}$ be the category of pointed commutative rings and pointed
+  ring homomorphisms. Then the functor $$U:CRing^{*}\to CRing:(\phi:(R,a)\to(S,b))\mapsto(\phi:R\to S)$$
+  is called the forgetful functor. We call $U$ the forgetful functor.
+\end{defn}
+\begin{defn}
+  A polynomial ring adjoint is a triple $(\Pi,\eta,\epsilon)$ such that $(\eta,\epsilon):\Pi\vdash U$ is an adjunction.
+  We denote the composite functor $U\Pi$ as $\pi$.
+\end{defn}
+\begin{defn}
+  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $(R,a)$ be a pointed commutative ring. Then we call the component of the counit at $(R, a)$, $\epsilon_{(R,a)}:\Pi R \to (R, a)$, the evaluation homomorphism at $a$. 
+\end{defn}
+\begin{thm}
+  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint. Then for any pointed commutative ring $(R,a)$, the ring homomorphism $\eta_{R}:R\to\pi R$ is injective and
+  the pointed ring homomorphism $\epsilon_{(R,a)}:\Pi R\to(R,a)$ is surjective.
+\end{thm}
+\begin{proof}
+  Let $(R,a)$ be a pointed commutative ring. By definition of adjunctions,
+  $$U\epsilon_{(R,a)}\circ\eta_{U(R,a)} = 1_{U(R,a)}$$
+  It follows that $\epsilon_{(R,a)}$ and $\eta_{R}$ are right and left invertible functions, respectively.
+  This implies that they are surjective and injective functions, respectively.
+\end{proof}
+\begin{defn}
+  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $R$ be a commutative ring. Then $\overline{R}\subseteq\pi R$ denotes the image
+  of $R$ under $\eta_R$. The elements of $\overline{R}$ are called constant polynomials.
+\end{defn}
+\begin{lem}
+  For any commutative ring $R$, $R \simeq \overline{R}$.
+\end{lem}
+\begin{proof}
+  This is a simple consequence of the fact that $\eta_R$ is injective.
+\end{proof}
+\begin{defn}
+  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $R$ be a commutative ring. Then, if $\Pi R = (\pi R, x)$, we call $x \in \pi R$ the indeterminate element
+  of $\pi R$. 
+\end{defn}
+\begin{thm}
+  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $R$ be a commutative ring. Suppose $x\in\pi R$ is the indeterminate element. 
+  Then the following are equivalent:
+  \begin{enumerate}
+    \item $R$ is a zero ring.
+    \item $\pi R$ is a zero ring.
+    \item $x$ is a unit in $\pi R$.
+  \end{enumerate}
+\end{thm}
+\begin{thm}
+  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint, $R$ be a commutative ring. Then the indeterminate element $x\in\pi R$ is not a zero divisor in $\pi R$.
+\end{thm}
+\end{document}
