@@ -2,7 +2,6 @@
 
 \usepackage{amsmath}
 \usepackage{amsthm}
-\usepackage{amsfonts}
 \usepackage{mathrsfs}
 
 \newtheorem{defn}{Definition}
@@ -38,7 +37,7 @@
 \noindent For the remainder of these notes, let $(\Pi,\eta,\epsilon)$ be a fixed polynomial ring adjoint. We define $\pi = U\Pi$. 
 
 \begin{defn} 
-  Let $R$ be a commutative ring and let $x$ be the distinguished point of the pointed ring $\Pi R$. Then $\Pi R$ is referred to as the polynomial ring over $R$ with indeterminate element $x$. The elements $p \in \Pi R$ are referred to as (formal, univariate) polynomials over $R$.
+  Let $R$ be a commutative ring and let $X$ be the distinguished point of the pointed ring $\Pi R$. Then $\Pi R$ is referred to as the polynomial ring over $R$ with indeterminate element $X$. The elements $p \in \Pi R$ are referred to as (formal, univariate) polynomials over $R$.
 \end{defn}
 
 \begin{defn}
@@ -70,20 +69,44 @@
 \end{proof}
 
 \begin{thm}
-  Let $R$ be a commutative ring. Suppose $x\in\pi R$ is the indeterminate element. Then the following are equivalent:
+  Let $R$ be a commutative ring. Suppose $X\in\pi R$ is the indeterminate element. Then the following are equivalent:
   \begin{enumerate}
-    \item $x$ is a unit in $\pi R$
-    \item $x\in\overline{R}$
+    \item $X\in\overline{R}$
+    \item $X$ is a unit in $\pi R$
     \item $R$ is a zero ring
     \item $\pi R$ is a zero ring
   \end{enumerate}
 \end{thm}
 
-\begin{thm}
-  Let $R$ be a commutative ring. Then the indeterminate element $x\in\pi R$ is not a zero divisor in $\pi R$.
-\end{thm}
+\begin{proof}
+  Let $R$ be a commutative ring and $X\in\pi R$ be the indeterminate element.
+  \begin{enumerate}
+    \item Suppose that $X\in\overline{R}$. Let $x=\eta^{-1}_{R}(X)\in R$.
+      By properties of adjunctions, the pair $(\eta_R, (\pi R, X))$ is an initial morphism from $R$ to $U$. Additionally, $$\eta_R:R\to U(\pi R, 1_{\pi R})$$
+      So, from the definition of initial morphisms, there is a unique pointed ring homomorphism $\phi:(\pi R,X)\to(\pi R,1_{\pi R})$
+      such that $$U\phi\circ\eta_{R} = \eta_{R}$$
+      Therefore,
+      $$X = \eta_{R}(x) = U\phi\circ\eta_{R}(x) = \phi(X) = 1_{\pi R}$$
+      So, $X$ is a unit in $\pi R$.
+    \item Suppose that $X$ is a unit in $\pi R$. Let $Y\in\pi R$ such that $XY = 1_{\pi R}$. Then
+      \begin{align*}
+        eval_{(R,0_R)}(XY) &= eval_{(R,0_{R})}(1_{\pi R})\\ 
+        eval_{(R,0_R)}(X)\cdot eval_{(R,0_R)}(Y) &= 1_{R}\\ 
+        0_{R}\cdot eval_{(R,0_R)}(Y) &= 1_{R}\\
+        0_{R}&= 1_{R} 
+      \end{align*}
+      So, $R$ is a zero ring.
+    \item Suppose that $R$ is a zero ring. Then $1_R = 0_R$. Therefore, $$\eta_{R}(1_R)=\eta_{R}(0_R)$$
+      Since $\eta_{R}$ is a ring homomorphism,
+      $$1_{\pi R} = \eta_{R}(1_R) = \eta_{R}(0_R) = 0_{\pi R}$$
+      Thus, $\pi R$ is a zero ring.
+    \item Suppose $\pi R$ is a zero ring. Then $X=0_{\pi R}=\eta_{R}(0_{R})\in\overline{R}$. 
+  \end{enumerate}
+  Therefore, these conditions are all equivalent.
+\end{proof}
 
 \begin{thm}
-  Let $R$ be a non-trivial commutative ring and $x\in\pi R$ be the indeterminate element. Then for any polynomial $p\in\pi R$, $xp \neq 1_{\pi R}$.  
+  Let $R$ be a commutative ring. Then the indeterminate element $X\in\pi R$ is not a zero divisor in $\pi R$.
 \end{thm}
+
 \end{document}
