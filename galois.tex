@@ -13,68 +13,77 @@
 \author{Andrew Tran}
 \date{}
 
-
 \begin{document}
 \maketitle
 
 \section{Polynomial Rings}
 \subsection{Adjuctions and their Properties}
 \begin{defn}
-  Let $\mathscr{C}$  and $\mathscr{D}$ be categories. Then an adjunction from $\mathscr{C}$ to $\mathscr{D}$ is a $4$-tuple $(\eta,\epsilon):F\vdash G$,
-  where $F:\mathscr{C}\to\mathscr{D}$ and $G:\mathscr{D}\to\mathscr{C}$ are functors and $\eta:1_{\mathscr{C}}\Rightarrow GF$ and 
-  $\epsilon:FG\Rightarrow1_{\mathscr{D}}$ are natural transformations and the following hold:
+  Let $\mathscr{C}$  and $\mathscr{D}$ be categories. Then an adjunction from $\mathscr{C}$ to $\mathscr{D}$ is a $4$-tuple $(\eta,\epsilon):F\vdash G$, where $F:\mathscr{C}\to\mathscr{D}$ and $G:\mathscr{D}\to\mathscr{C}$ are functors, $\eta:1_{\mathscr{C}}\Rightarrow GF$ and $\epsilon:FG\Rightarrow1_{\mathscr{D}}$ are natural transformations and the following conditions hold:
   \begin{enumerate}
-    \item For every object $X \in Ob\mathscr{C}$, $\epsilon_{FX}\circ F\eta_{X} = 1_{FX}$ 
-    \item For every object $Y \in Ob\mathscr{D}$, $G\epsilon_{Y}\circ\eta_{GX} = 1_{GX}$
+    \item For every $X \in Ob\mathscr{C}$, $\epsilon_{FX}\circ F\eta_{X} = 1_{FX}$ 
+    \item For every $Y \in Ob\mathscr{D}$, $G\epsilon_{Y}\circ\eta_{GY} = 1_{GY}$
   \end{enumerate}
 \end{defn}
+
 \subsection{Polynomial Ring Adjoints}
 \begin{defn}
-  Let $CRing$ be the category of commutative rings and ring homomorphisms and $CRing^{*}$ be the category of pointed commutative rings and pointed
-  ring homomorphisms. Then the functor $$U:CRing^{*}\to CRing:(\phi:(R,a)\to(S,b))\mapsto(\phi:R\to S)$$
-  is called the forgetful functor. We call $U$ the forgetful functor.
+  Let $CRing$ be the category of commutative rings and ring homomorphisms and $CRing^{*}$ be the category of pointed commutative rings and pointed ring homomorphisms. Then the functor $$U:CRing^{*}\to CRing:[\phi:(R,a)\to(S,b)]\mapsto[\phi:R\to S]$$ is called the forgetful functor.
 \end{defn}
+
 \begin{defn}
-  A polynomial ring adjoint is a triple $(\Pi,\eta,\epsilon)$ such that $(\eta,\epsilon):\Pi\vdash U$ is an adjunction.
-  We denote the composite functor $U\Pi$ as $\pi$.
+  A polynomial ring adjoint is a triple $(\Pi,\eta,\epsilon)$ such that $$(\eta,\epsilon):\Pi\vdash U$$ is an adjunction from $CRing$ to $CRing^{*}$.
 \end{defn}
+
+\noindent For the remainder of these notes, let $(\Pi,\eta,\epsilon)$ be a fixed polynomial ring adjoint. We define $\pi = U\Pi$. 
+
+\begin{defn} 
+  Let $R$ be a commutative ring and let $x$ be the distinguished point of the pointed ring $\Pi R$. Then $\Pi R$ is referred to as the polynomial ring over $R$ with indeterminate element $x$. The elements $p \in \Pi R$ are referred to as (formal, univariate) polynomials over $R$.
+\end{defn}
+
 \begin{defn}
-  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $(R,a)$ be a pointed commutative ring. Then we call the component of the counit at $(R, a)$, $\epsilon_{(R,a)}:\Pi R \to (R, a)$, the evaluation homomorphism at $a$. 
+  Let $(R,a)$ be a pointed commutative ring. Then we define $eval_{(R,a)}=U\epsilon_{(R,a)}:\pi R \to R$ and refer to $eval_{(R,a)}$ as the evaluation homomorphism on $R$ at $a$.
 \end{defn}
+
+\begin{defn}
+  Let $R$ be a commutative ring. Then we refer to $\eta_{R}:R\to\pi R$ as the $R$ embedding homomorphism.
+\end{defn}
+
 \begin{thm}
-  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint. Then for any pointed commutative ring $(R,a)$, the ring homomorphism $\eta_{R}:R\to\pi R$ is injective and
-  the pointed ring homomorphism $\epsilon_{(R,a)}:\Pi R\to(R,a)$ is surjective.
+  For any pointed commutative ring $(R,a)$, $\eta_{R}:R\to\pi R$ is injective and $eval_{(R,a)}:\pi R\to R$ is surjective.
 \end{thm}
+
 \begin{proof}
-  Let $(R,a)$ be a pointed commutative ring. By definition of adjunctions,
-  $$U\epsilon_{(R,a)}\circ\eta_{U(R,a)} = 1_{U(R,a)}$$
-  It follows that $\epsilon_{(R,a)}$ and $\eta_{R}$ are right and left invertible functions, respectively.
-  This implies that they are surjective and injective functions, respectively.
+  Let $(R,a)$ be a pointed commutative ring. By definition of adjunctions, $$eval_{(R,a)}\circ\eta_{R} = U\epsilon_{(R,a)}\circ\eta_{U(R,a)} = 1_{U(R,a)}$$ In other words, $eval_{(R,a)}$ is a right invertible function and $\eta_{R}$ is a left invertible function. This implies that they are surjective and injective, respectively.
 \end{proof}
+
 \begin{defn}
-  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $R$ be a commutative ring. Then $\overline{R}\subseteq\pi R$ denotes the image
-  of $R$ under $\eta_R$. The elements of $\overline{R}$ are called constant polynomials.
+  Let $R$ be a commutative ring. We define the subring of constant polynomials over $R$, $\overline{R}\subseteq\pi R$, to be the subring of $\pi R$ given by the image of $R$ under the embedding homomorphism $\eta_R$.
 \end{defn}
+
 \begin{lem}
-  For any commutative ring $R$, $R \simeq \overline{R}$.
+  For any commutative ring $R$, $R \cong \overline{R}$.
 \end{lem}
+
 \begin{proof}
-  This is a simple consequence of the fact that $\eta_R$ is injective.
+  It has already been proven that $\eta_R:R\to\overline{R}$ is injective and is, by construction, surjective on $\overline{R}$.
 \end{proof}
-\begin{defn}
-  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $R$ be a commutative ring. Then, if $\Pi R = (\pi R, x)$, we call $x \in \pi R$ the indeterminate element
-  of $\pi R$. 
-\end{defn}
+
 \begin{thm}
-  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint and $R$ be a commutative ring. Suppose $x\in\pi R$ is the indeterminate element. 
-  Then the following are equivalent:
+  Let $R$ be a commutative ring. Suppose $x\in\pi R$ is the indeterminate element. Then the following are equivalent:
   \begin{enumerate}
-    \item $R$ is a zero ring.
-    \item $\pi R$ is a zero ring.
-    \item $x$ is a unit in $\pi R$.
+    \item $x$ is a unit in $\pi R$
+    \item $x\in\overline{R}$
+    \item $R$ is a zero ring
+    \item $\pi R$ is a zero ring
   \end{enumerate}
 \end{thm}
+
 \begin{thm}
-  Let $(\Pi,\eta,\epsilon)$ be a polynomial ring adjoint, $R$ be a commutative ring. Then the indeterminate element $x\in\pi R$ is not a zero divisor in $\pi R$.
+  Let $R$ be a commutative ring. Then the indeterminate element $x\in\pi R$ is not a zero divisor in $\pi R$.
+\end{thm}
+
+\begin{thm}
+  Let $R$ be a non-trivial commutative ring and $x\in\pi R$ be the indeterminate element. Then for any polynomial $p\in\pi R$, $xp \neq 1_{\pi R}$.  
 \end{thm}
 \end{document}
